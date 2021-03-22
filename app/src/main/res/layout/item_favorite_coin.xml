@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemCoin"
+            type="com.example.cryptoapp.data.model.CoinDetailModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageViewCoinImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadUrl="@{itemCoin.image.thumb}"
+                tools:src="@drawable/ic_auth_logo" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewCoinSymbol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_bold"
+                android:singleLine="true"
+                android:text="@{itemCoin.symbol}"
+                android:textColor="@color/purple_300"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/circleImageViewCoinImage"
+                app:layout_constraintTop_toTopOf="@+id/circleImageViewCoinImage"
+                tools:text="BTC" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewCoinName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{itemCoin.name}"
+                android:textColor="@color/purple_300"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageViewCoinImage"
+                app:layout_constraintStart_toEndOf="@+id/circleImageViewCoinImage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCoinSymbol"
+                tools:text="Bitcoin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="coinDetailViewState"
+            type="com.example.cryptoapp.ui.coindetail.CoinDetailViewState" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            tools:context=".ui.coindetail.CoinDetailFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{coinDetailViewState.pageVisibility}">
+
+
+                <ImageView
+                    android:id="@+id/imageViewAddFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_desc_add_favorite"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_favorite_border_red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circleImageViewCoinImage"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:loadUrl="@{coinDetailViewState.coinImageUrl}"
+                    tools:src="@drawable/ic_splash_logo" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCoinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{`Name : ` + coinDetailViewState.coinName}"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/circleImageViewCoinImage"
+                    tools:text="Name : Bitcoin" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCoinSymbol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{`Symbol : ` + coinDetailViewState.coinSymbol}"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCoinName"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCoinName"
+                    tools:text="Symbol : BTC" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewHashingAlgorithm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{`Hashing Algorithm : ` + coinDetailViewState.coinHashAlgorithm}"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCoinSymbol"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCoinSymbol"
+                    tools:text="Hashing Algorithm : SHA-256" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCoinCurrentPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{coinDetailViewState.coinCurrentPrice +`$` }"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/textViewHashingAlgorithm"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewHashingAlgorithm"
+                    tools:text="Current Price : 152$" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCoinChangeForDayHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{`Change : ` + coinDetailViewState.coinChangePercentageForDayHour +`%` }"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCoinCurrentPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCoinCurrentPrice"
+                    tools:text="Change : 24%" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewCoinDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@{coinDetailViewState.coinDescription}"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textViewCoinChangeForDayHour"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewCoinChangeForDayHour"
+                    tools:text="Bitcoin eas establish...." />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="@{coinDetailViewState.loadingVisibility}"
+            style="@style/progressBarStyle" />
+    </FrameLayout>
+</layout>

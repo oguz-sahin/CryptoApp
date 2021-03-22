@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoadingStatus"
+            type="Boolean" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{isLoadingStatus ? View.GONE:View.VISIBLE}">
+
+            <ImageView
+                android:id="@+id/imageViewLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/content_desc_register_logo"
+                android:src="@drawable/ic_auth_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/TextViewRegisterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/register_title"
+                android:textColor="@color/black_default"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextInputLayoutEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginTop="16dp"
+                app:boxStrokeColor="@color/purple_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextViewRegisterTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TextInputEditTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/common_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textColorHint="@android:color/holo_orange_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextInputLayoutPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/purple_300"
+                app:layout_constraintEnd_toEndOf="@+id/TextInputLayoutEmail"
+                app:layout_constraintStart_toStartOf="@+id/TextInputLayoutEmail"
+                app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutEmail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TextInputEditTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/common_password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textColorHint="@android:color/holo_orange_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextInputLayoutConfirmPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:boxStrokeColor="@color/purple_300"
+                app:layout_constraintEnd_toEndOf="@+id/TextInputLayoutPassword"
+                app:layout_constraintStart_toStartOf="@+id/TextInputLayoutPassword"
+                app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutPassword">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/TextInputEditTextConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/register_confirm_password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textColorHint="@android:color/holo_orange_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ButtonSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/purple_300"
+                android:padding="16dp"
+                android:text="@string/register_sign_up"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/TextInputLayoutConfirmPassword"
+                app:layout_constraintStart_toStartOf="@+id/TextInputLayoutConfirmPassword"
+                app:layout_constraintTop_toBottomOf="@+id/TextInputLayoutConfirmPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/LottieAnimationViewLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{isLoadingStatus ? View.VISIBLE:View.GONE}"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_animation_loading" />
+    </FrameLayout>
+</layout>
