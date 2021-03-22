@@ -23,7 +23,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-   @Inject lateinit var firebaseAuth: FirebaseAuth
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private val coinListAdapter = CoinListAdapter()
@@ -43,7 +42,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        firebaseAuth.signOut()
         initObserver()
         setAdapterProperties()
         setEditTextSearchProperties()
